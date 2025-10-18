@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+
+files:
+  - source: .
+    destination: /home/ec2-user/tinyapp # Change this path as needed
+
+hooks:
+  AfterInstall:
+    - location: install_depends.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStart:
+    - location: start_server.sh
+      timeout: 60
+      runas: ec2-user
